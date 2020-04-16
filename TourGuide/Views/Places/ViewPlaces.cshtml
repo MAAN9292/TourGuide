@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "ViewPlaces";
+}
+<div class="text-center">
+    <h1 class="display-4">Places To Visit</h1>
+</div>
+<div class="card-columns">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@item.PlaceName</h5>
+                <p class="card-text">@item.Country.CountryName</p>
+                <a class="btn btn-primary" asp-action="PlaceDetails" asp-route-id="@item.PlaceID">Explore Place</a>
+            </div>
+        </div>
+    }
+</div>
+

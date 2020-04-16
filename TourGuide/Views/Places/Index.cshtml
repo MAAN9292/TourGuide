@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TourGuide.Models.Place>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Places Information</h1>
+
+<p>
+    <a class="btn btn-dark text-white" asp-action="Create">Add New Place</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by Place Name / Country Name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-dark text-whtie" /> |
+            <a class="text-white" asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlaceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlaceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.CountryName)
+                </td>
+                <td>
+                    <a class="btn btn-dark btn-block text-white" asp-action="Edit" asp-route-id="@item.PlaceID">Edit</a>
+                    <a class="btn btn-dark btn-block text-white" asp-action="Details" asp-route-id="@item.PlaceID">Details</a>
+                    <a class="btn btn-dark btn-block text-white" asp-action="Delete" asp-route-id="@item.PlaceID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
